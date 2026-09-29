@@ -1767,3 +1767,33 @@ button {
         transform: scale(1.5) translateY(-35px);
     }
 }
+/* =========================
+   ЗАЩИТА ОТ СКРОЛЛА НА ГЛАВНОЙ
+   ========================= */
+
+/* На самой машине палец не должен прокручивать страницу */
+#tapButton,
+.car-area {
+    touch-action: none;
+}
+
+/* Главная страница не прокручивается */
+#homeScreen {
+    overflow: hidden;
+}
+
+/* =========================
+   СКРОЛЛ ДЛЯ ГАРАЖА И ЗАДАНИЙ
+   ========================= */
+
+/* Задания можно листать */
+#tasksScreen {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Гараж можно листать */
+#garageScreen {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
