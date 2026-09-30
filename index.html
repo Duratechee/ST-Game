@@ -1,0 +1,475 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ST Racing</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="game">
+
+        <!-- ГЛАВНАЯ -->
+        <section id="homeScreen" class="screen active-screen">
+
+            <div class="stats-panel">
+                <div class="stat">
+                    <span class="stat-icon">🪙</span>
+                    <span id="coins">0</span>
+                </div>
+
+                <div class="stat">
+                    <span class="stat-icon">⚡</span>
+                    <span id="energy">100</span>/100
+                </div>
+            </div>
+
+            <div class="car-area">
+                <img id="tapButton"
+                     class="car"
+                     src="images/car.png"
+                     alt="Машина">
+            </div>
+
+            <div class="car-info">
+
+                <div>
+                    🚗 Уровень машины:
+                    <span id="carLevel">1</span>
+                </div>
+
+                <div>
+                    🪙 За тап:
+                    <span id="tapPower">1</span>
+                </div>
+
+                <button id="upgradeButton">
+                    🔧 Улучшить
+                </button>
+
+            </div>
+
+        </section>
+
+
+      
+        <!-- ЗАЕЗДЫ -->
+        <section id="racesScreen" class="screen">
+
+            <div class="race-header">
+                <div class="section-icon">🏁</div>
+
+                <h2>Заезд</h2>
+
+                <p id="raceOpponentText">
+                    Готов к старту?
+                </p>
+            </div>
+
+            <!-- ГОНОЧНАЯ СЦЕНА -->
+            <div class="race-scene">
+
+                <!-- Дорога -->
+                <div class="race-track">
+
+                    <div id="raceSmokePlayer" class="race-smoke"></div>
+                    <div id="raceSmokeOpponent" class="race-smoke"></div>
+
+                    <!-- Боковые полосы -->
+                    <div class="road-edge road-edge-left"></div>
+                    <div class="road-edge road-edge-right"></div>
+
+                    <!-- Дорожная разметка -->
+                    <div class="road-lines">
+                        <div class="road-line"></div>
+                        <div class="road-line"></div>
+                        <div class="road-line"></div>
+                        <div class="road-line"></div>
+                        <div class="road-line"></div>
+                        <div class="road-line"></div>
+                    </div>
+
+                    <!-- Полоса игрока -->
+                    <div class="race-lane race-player-lane">
+
+                        <div class="race-lane-name">
+                            ТЫ
+                        </div>
+
+                        <img id="racePlayerCar"
+                             class="race-car"
+                             src="images/car.png"
+                             alt="Твоя машина">
+
+                    </div>
+
+                    <!-- Полоса соперника -->
+                    <div class="race-lane race-opponent-lane">
+
+                        <div class="race-lane-name">
+                            СОПЕРНИК
+                        </div>
+
+                        <img id="raceOpponentCar"
+                             class="race-car"
+                             src="images/car.png"
+                             alt="Машина соперника">
+
+                    </div>
+
+                    <!-- Стартовая зона -->
+                    <div class="race-start-line">
+                        СТАРТ
+                    </div>
+
+                    <!-- Финиш -->
+                    <div class="race-finish">
+                        <span>🏁</span>
+                    </div>
+
+                    <!-- Эффект скорости -->
+                    <div class="speed-effect speed-effect-1"></div>
+                    <div class="speed-effect speed-effect-2"></div>
+                    <div class="speed-effect speed-effect-3"></div>
+
+                    <div id="raceVictoryEffect" class="race-victory-effect">
+                        <div class="victory-stars">✦ ✦ ✦</div>
+                        <div class="victory-title">ПОБЕДА!</div>
+                        <div class="victory-flag">🏁</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Статус -->
+            <div id="raceStatus"
+                 class="race-status">
+                Нажми кнопку, чтобы начать
+            </div>
+
+            <!-- Старт -->
+            <button id="startRaceButton"
+                    class="race-start-button">
+                🏁 НАЧАТЬ ГОНКУ
+            </button>
+
+            <!-- Повтор -->
+            <button id="raceAgainButton"
+                    class="race-start-button race-again-button"
+                    style="display:none;">
+                🔄 ЕЩЁ РАЗ
+            </button>
+
+        </section>
+
+
+
+        <!-- ЗАДАНИЯ -->
+        <section id="tasksScreen" class="screen">
+
+            <div class="tasks">
+
+                <!-- ЕЖЕДНЕВНАЯ НАГРАДА -->
+                <div class="daily-reward-card">
+
+                    <div class="daily-reward-header">
+                        <span class="daily-reward-icon">🎁</span>
+
+                        <div>
+                            <h2>Ежедневная награда</h2>
+                            <p id="dailyRewardText">
+                                Твоя награда за сегодня
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- СТАТУС НАГРАДЫ -->
+                    <div id="dailyRewardStatus" class="daily-reward-status">
+                        🎁 НАГРАДА ДОСТУПНА
+                    </div>
+
+                    <!-- ДНИ -->
+                    <div class="daily-reward-days">
+
+                        <div class="reward-day" data-day="1">
+                            <span>День 1</span>
+                            <strong>500 🪙</strong>
+                        </div>
+
+                        <div class="reward-day" data-day="2">
+                            <span>День 2</span>
+                            <strong>750 🪙</strong>
+                        </div>
+
+                        <div class="reward-day" data-day="3">
+                            <span>День 3</span>
+                            <strong>1 000 🪙</strong>
+                        </div>
+
+                        <div class="reward-day" data-day="4">
+                            <span>День 4</span>
+                            <strong>1 500 🪙</strong>
+                        </div>
+
+                        <div class="reward-day" data-day="5">
+                            <span>День 5</span>
+                            <strong>2 000 🪙</strong>
+                        </div>
+
+                        <div class="reward-day" data-day="6">
+                            <span>День 6</span>
+                            <strong>3 000 🪙</strong>
+                        </div>
+
+                        <div class="reward-day" data-day="7">
+                            <span>День 7</span>
+                            <strong>5 000 🪙</strong>
+                        </div>
+
+                    </div>
+
+                    <!-- КНОПКА -->
+                    <button id="dailyRewardButton"
+                            class="daily-reward-button"
+                            type="button">
+                        🎁 Забрать награду
+                    </button>
+
+                </div>
+
+
+                <!-- ЕЖЕДНЕВНЫЕ ЗАДАНИЯ -->
+                <div class="tasks-header">
+                    <span>🎯</span>
+                    <h2>Задания</h2>
+                </div>
+
+                <div id="tasksList" class="tasks-list">
+
+                    <!-- Задание 1 -->
+                    <div class="task-card">
+
+                        <div class="task-icon">👆</div>
+
+                        <div class="task-content">
+
+                            <strong>Тапай по машине</strong>
+
+                            <span class="task-progress-text">
+                                0 / 100
+                            </span>
+
+                            <div class="task-progress">
+                                <div class="task-progress-fill"></div>
+                            </div>
+
+                            <small>
+                                Награда: 500 🪙
+                            </small>
+
+                        </div>
+
+                        <button class="task-reward-button">
+                            Забрать
+                        </button>
+
+                    </div>
+
+
+                    <!-- Задание 2 -->
+                    <div class="task-card">
+
+                        <div class="task-icon">🪙</div>
+
+                        <div class="task-content">
+
+                            <strong>Заработай монеты</strong>
+
+                            <span class="task-progress-text">
+                                0 / 1 000
+                            </span>
+
+                            <div class="task-progress">
+                                <div class="task-progress-fill"></div>
+                            </div>
+
+                            <small>
+                                Награда: 1 000 🪙
+                            </small>
+
+                        </div>
+
+                        <button class="task-reward-button">
+                            Забрать
+                        </button>
+
+                    </div>
+
+
+                    <!-- Задание 3 -->
+                    <div class="task-card">
+
+                        <div class="task-icon">🔧</div>
+
+                        <div class="task-content">
+
+                            <strong>Улучши машину</strong>
+
+                            <span class="task-progress-text">
+                                0 / 1
+                            </span>
+
+                            <div class="task-progress">
+                                <div class="task-progress-fill"></div>
+                            </div>
+
+                            <small>
+                                Награда: 1 500 🪙
+                            </small>
+
+                        </div>
+
+                        <button class="task-reward-button">
+                            Забрать
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ГАРАЖ -->
+        <section id="garageScreen" class="screen">
+
+            <div class="garage">
+
+                <!-- ЗАГОЛОВОК -->
+
+                <div class="garage-header">
+                    <span>🚗</span>
+                    <h2>Гараж</h2>
+                </div>
+
+
+                <!-- БОЛЬШАЯ ВЫБРАННАЯ МАШИНА -->
+
+                <div class="current-car-card">
+
+                    <div class="car-preview">
+
+                        <img id="garageCarImage"
+                             src="images/car.png"
+                             alt="Текущая машина">
+
+                    </div>
+
+
+                    <div class="current-car-info">
+
+                        <h3 id="garageCarName">
+                            Ford Mondeo
+                        </h3>
+
+
+                        <div class="garage-stats">
+
+                            <div>
+                                <span>Уровень</span>
+                                <strong id="garageCarLevel">1</strong>
+                            </div>
+
+                            <div>
+                                <span>За тап</span>
+                                <strong id="garageTapPower">1 🪙</strong>
+                            </div>
+
+                            <div>
+                                <span>⚡ Скорость</span>
+                                <strong id="garageCarSpeed">50</strong>
+                            </div>
+
+                            <div>
+                                <span>🚀 Разгон</span>
+                                <strong id="garageCarAcceleration">50</strong>
+                            </div>
+
+                            <div class="garage-stat-wide">
+                                <span>🪙 Множитель дохода</span>
+                                <strong id="garageCarMultiplier">×1</strong>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <button id="selectedCarButton"
+                            class="selected-car-button">
+                        ✓ Выбрана
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- СПИСОК МАШИН -->
+
+            <h3 class="garage-subtitle">
+                Мои машины
+            </h3>
+
+
+            <div class="cars-list">
+
+            </div>
+
+        
+        </section>
+
+    </main>
+
+
+    <!-- TURBO -->
+    <div id="turboEvent" class="turbo-event">
+        <span>⚡ ТУРБО ×2</span>
+        <span id="turboTimer">10</span>
+    </div>
+
+
+    <!-- НИЖНЯЯ НАВИГАЦИЯ -->
+    <nav class="bottom-nav">
+
+        <button class="nav-button active" data-screen="homeScreen">
+            <span>🏠</span>
+            <small>Главная</small>
+        </button>
+
+        <button class="nav-button" data-screen="racesScreen">
+            <span>🏁</span>
+            <small>Заезды</small>
+        </button>
+
+        <button class="nav-button" data-screen="tasksScreen">
+            <span>🎯</span>
+            <small>Задания</small>
+        </button>
+
+        <button class="nav-button" data-screen="garageScreen">
+            <span>🚗</span>
+            <small>Гараж</small>
+        </button>
+
+    </nav>
+
+
+    <script src="game.js"></script>
+
+</body>
+</html>
