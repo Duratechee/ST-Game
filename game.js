@@ -13,7 +13,7 @@ let selectedCar = "car1";
 let lastOnlineTime = Date.now();
 
 const AFK_MAX_SECONDS = 8 * 60 * 60; // максимум 8 часов
-const AFK_BASE_PER_MINUTE = 2;        // базовый доход в минуту
+const AFK_BASE_PER_MINUTE = 15;        // базовый доход в минуту
 const MAX_ENERGY = 100;
 
 
@@ -2267,37 +2267,32 @@ function calculateRaceReward(
     const opponentRating =
         getCarRating(opponent);
 
-
     const difference =
         opponentRating -
         playerRating;
 
+    // Базовая награда зависит от стоимости машины игрока
+    // Чем дороже машина — тем выше награда
+    const baseReward =
+        player.price > 0
+            ? 1000 + Math.round(player.price * 0.15)
+            : 1000;
+
+    // Бонус/штраф за разницу характеристик
+    const difficultyBonus =
+        Math.round(difference * 10);
 
     let reward =
-        1000 +
-        Math.round(
-            difference * 15
-        );
-
+        baseReward +
+        difficultyBonus;
 
     // Минимальная награда
-    reward =
-        Math.max(
-            reward,
-            250
-        );
-
-
-    // Максимальная награда
-    reward =
-        Math.min(
-            reward,
-            2500
-        );
-
+    reward = Math.max(
+        reward,
+        500
+    );
 
     return reward;
-
 }
 
 
